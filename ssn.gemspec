@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jason Harrelson"]
-  s.date = %q{2010-10-02}
-  s.description = %q{TODO: longer description of your gem}
+  s.date = %q{2010-10-05}
+  s.description = %q{Encapsulates functionality for storing an unformatted SSN but formatting the SSN on print.}
   s.email = %q{jason@lookforwardenterprises.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -26,9 +26,14 @@ Gem::Specification.new do |s|
      "lib/ssn.rb",
      "lib/ssn/active_record_extensions.rb",
      "lib/ssn/social_security_number.rb",
+     "script/console",
+     "script/environment.rb",
+     "script/seed.rb",
+     "spec/database.yml",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/ssn_spec.rb"
+     "spec/ssn_spec.rb",
+     "ssn.gemspec"
   ]
   s.homepage = %q{http://github.com/midas/ssn}
   s.rdoc_options = ["--charset=UTF-8"]

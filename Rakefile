@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "ssn"
     gem.summary = %Q{Encapsulates functionality for storing an unformatted SSN but formatting the SSN on print.}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Encapsulates functionality for storing an unformatted SSN but formatting the SSN on print.}
     gem.email = "jason@lookforwardenterprises.com"
     gem.homepage = "http://github.com/midas/ssn"
     gem.authors = ["Jason Harrelson"]

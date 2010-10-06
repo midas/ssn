@@ -1,9 +1,71 @@
-= ssn
+= addressable_record
 
-Description goes here.
+http://github.com/midas/ssn
+
+
+== DESCRIPTION
+
+Encapsulates functionality for storing an unformatted SSN but formatting the SSN on print.
+
+
+== FEATURES
+
+* Store a SSN unformatted in a database field with auto formatting when using.
+
+
+== REQUIREMENTS
+
+* active_record >= 2.3
+
+
+== INSTALL
+
+  gem sources -a http://gemcutter.org
+  sudo gem install ssn
+
+
+== INSTALL FOR RAILS 3
+
+Add to environment file:
+
+  gem 'ssn', '~>0.1.0'
+
+Run:
+
+  bundle:install
+
+== INSTALL FOR RAILS 2
+
+Add to environment file:
+
+  config.gem 'ssn', :version => '~>0.1.0', :source => 'http://gemcutter.org'
+
+Run:
+
+  sudo rake:gems:install
+
+
+== USAGE
+
+Add a raw_ssn that is at least 9 in length to the database table of the model you desire to track a SSN on.
+
+Specify usage in your model:
+
+  class Person
+    has_ssn :ssn
+    ...
+  end
+
+Use the field:
+
+  person = Peson.new :ssn => '123456789'
+  person.ssn                                # => 123-45-6789
+  person.ssn = '123-45-6789'
+  person.ssn                                # => 123-45-6789
+
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
@@ -12,6 +74,16 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
+
 == Copyright
 
-Copyright (c) 2010 Jason Harrelson. See LICENSE for details.
+Copyright (c) 2009 C. Jason Harrelson (midas)
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
