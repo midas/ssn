@@ -4,7 +4,7 @@ require 'ssn/active_record_extensions'
 require 'ssn/social_security_number'
 
 module Ssn
-  VERSION = '0.1.0'
+  VERSION = '0.2.0'
 end
 
 ActiveRecord::Base.send( :include, Ssn::ActiveRecordExtensions ) if defined?( ActiveRecord::Base )
