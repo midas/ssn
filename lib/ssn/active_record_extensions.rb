@@ -6,11 +6,15 @@ module Ssn
 
     module ActsMethods
       def has_ssn( *args )
+        options = args.extract_options!
+
         unless included_modules.include? InstanceMethods
           self.class_eval { extend ClassMethods }
           include InstanceMethods
-          validates_length_of :raw_ssn, :maximum => 9, :allow_blank => true
-          validates_format_of :raw_ssn, :with => /^[0-9]{9}$/, :allow_blank => true
+          validates_length_of :"raw_#{args.first.to_sym}", :maximum => 9, :allow_blank => true
+          validates_format_of :"raw_#{args.first.to_sym}", :with => /^[0-9]{9}$/, :allow_blank => true
+
+          validates_format_of args.first.to_sym, :with => /^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$/, :allow_blank => true
         end
 
         initialize_has_ssn_from_args args
@@ -38,9 +42,6 @@ module Ssn
         end
 
         define_method "#{str}=" do |value|
-          unless /^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$/.match( value )
-            raise 'Invalid SSN format provided for ssn'
-          end
           self.raw_ssn = value.gsub( /-/, "" )
         end
       end

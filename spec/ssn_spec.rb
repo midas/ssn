@@ -35,15 +35,8 @@ describe "Ssn" do
     end
 
     it "should not allow a mal-formed social security number" do
-      lambda { @user.ssn = "1-1345-6789" }.should raise_error
-    end
-
-    it "should allow correctly formed social security numbers" do
-      lambda { @user.ssn = "123-45-6789" }.should_not raise_error
-    end
-
-    it "should allow correctly formed social security numbers" do
-      lambda { @user.ssn = "123456789" }.should_not raise_error
+      @user.ssn = '1-3456789'
+      @user.save.should be_false
     end
   end
 
