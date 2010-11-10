@@ -12,9 +12,9 @@ module Ssn
           self.class_eval { extend ClassMethods }
           include InstanceMethods
           validates_length_of :"raw_#{args.first.to_sym}", :maximum => 9, :allow_blank => true
-          validates_format_of :"raw_#{args.first.to_sym}", :with => /^[0-9]{9}$/, :allow_blank => true
+          validates_format_of :"raw_#{args.first.to_sym}", :with => Ssn::SocialSecurityNumber::UNFORMATTED_REGEX, :allow_blank => true
 
-          validates_format_of args.first.to_sym, :with => /^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$/, :allow_blank => true
+          validates_format_of args.first.to_sym, :with => Ssn::SocialSecurityNumber::FORMATTED_REGEX, :allow_blank => true
         end
 
         initialize_has_ssn_from_args args
@@ -38,7 +38,7 @@ module Ssn
 
       def initialize_has_ssn_from_string( str )
         define_method str do
-          return raw_ssn.blank? ? nil : raw_ssn.gsub( /^([0-9]{3})([0-9]{2})([0-9]{4})$/,"\\1-\\2-\\3" )
+          return raw_ssn.blank? ? nil : raw_ssn.gsub( Ssn::SocialSecurityNumber::UNFORMATTED_CAPTURE_REGEX, "\\1-\\2-\\3" )
         end
 
         define_method "#{str}=" do |value|

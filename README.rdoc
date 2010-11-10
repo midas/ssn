@@ -11,6 +11,7 @@ Encapsulates functionality for storing an unformatted SSN but formatting the SSN
 == FEATURES
 
 * Store a SSN unformatted in a database field with auto formatting when using.
+* SocialSecurityNumber class to use for formatting SSNs.
 
 
 == REQUIREMENTS
@@ -47,6 +48,8 @@ Run:
 
 == USAGE
 
+=== Active Record Extension
+
 Add a raw_ssn that is at least 9 in length to the database table of the model you desire to track a SSN on.
 
 Specify usage in your model:
@@ -62,6 +65,15 @@ Use the field:
   person.ssn                                # => 123-45-6789
   person.ssn = '123-45-6789'
   person.ssn                                # => 123-45-6789
+
+
+=== SocialSecurityNumber Class
+
+  ssn = Ssn::SocialSecurityNumber.new( '123456789' )
+
+  ssn.raw       # => 123456789
+  ssn.formatted # => 123-45-6789
+
 
 
 == Note on Patches/Pull Requests
