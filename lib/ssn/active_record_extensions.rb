@@ -65,16 +65,16 @@ module Ssn
 
     module InstanceMethods
 
-      def consider_blank_ssn_values
+      def considered_blank_ssns
         [
           '000000000',
           '000-00-0000'
         ]
       end
-      private :consider_blank_ssn_values
+      private :considered_blank_ssns
 
       def ssn_value_considered_blank?( value )
-        consider_blank_ssn_values.include? value
+        considered_blank_ssns.include? value
       end
       private :ssn_value_considered_blank?
 
