@@ -1,10 +1,11 @@
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-require 'ssn/active_record_extensions'
-require 'ssn/social_security_number'
-require 'ssn/version'
 
 module Ssn
+
+  autoload :ActiveRecordExtensions, 'ssn/active_record_extensions'
+  autoload :SocialSecurityNumber,   'ssn/social_security_number'
+  autoload :Version,                'ssn/version'
 
 end
 

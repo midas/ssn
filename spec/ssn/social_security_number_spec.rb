@@ -22,16 +22,24 @@ describe Ssn::SocialSecurityNumber do
     described_class.new( '123-45-6789' ).raw.should == '123456789'
   end
 
+  it "should initialize the SSN to empty when given 000000000" do
+    described_class.new( '000000000' ).raw.should be_nil
+  end
+
+  it "should initialize the SSN to empty when given 000-00-0000" do
+    described_class.new( '000-00-0000' ).raw.should be_nil
+  end
+
   it "should return a formatted SSN" do
     described_class.new( '123456789' ).formatted.should == '123-45-6789'
   end
 
   it "should return a '' when a the SSN is blank" do
-    described_class.new( '' ).formatted.should == ''
+    described_class.new( '' ).formatted.should be_nil
   end
 
   it "should return a '' when a the SSN is nil" do
-    described_class.new.formatted.should == ''
+    described_class.new.formatted.should be_nil
   end
 
   context "well formed SSNs" do
