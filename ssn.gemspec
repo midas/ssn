@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Ssn::VERSION
   s.authors     = ["C. Jason Harrelson (midas)"]
   s.email       = ["jason@lookforwardenterprises.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/midas/ssn"
   s.summary     = %q{Easily use SSNs in your app.}
   s.description = %q{Encapsulates functionality for storing an unformatted SSN but formatting the SSN on print.}
 
