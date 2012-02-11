@@ -1,12 +1,16 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+
 require 'rubygems'
 require 'active_record'
-require 'ssn'
-require 'spec'
-require 'spec/autorun'
+require 'rails'
+require 'bundler/setup'
 
-Spec::Runner.configure do |config|
+require 'ssn'
+
+RSpec.configure do |config|
+
+  config.mock_with :rspec
 
 end
 
