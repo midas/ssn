@@ -1,10 +1,13 @@
 module Ssn
+
   module ActiveRecordExtensions
+
     def self.included( base )
       base.extend ActsMethods
     end
 
     module ActsMethods
+
       def has_ssn( *args )
         options = args.extract_options!
 
@@ -21,9 +24,11 @@ module Ssn
       end
 
       alias_method :has_ssns, :has_ssn
+
     end
 
     module ClassMethods
+
       def initialize_has_ssn_from_args( args )
         if args.first.is_a? Symbol
           initialize_has_ssn_from_string args.first.to_s
@@ -35,23 +40,46 @@ module Ssn
           raise 'has_ssn can only accept a string, symbol or hash of strings or symbols'
         end
       end
+      private :initialize_has_ssn_from_args
 
       def initialize_has_ssn_from_string( str )
         define_method str do
-          return raw_ssn.blank? ? nil : raw_ssn.gsub( Ssn::SocialSecurityNumber::UNFORMATTED_CAPTURE_REGEX, "\\1-\\2-\\3" )
+          self.send( "raw_#{str}" ).blank? ?
+            nil :
+            self.send( "raw_#{str}" ).gsub( Ssn::SocialSecurityNumber::UNFORMATTED_CAPTURE_REGEX, "\\1-\\2-\\3" )
         end
 
         define_method "#{str}=" do |value|
-          self.raw_ssn = value.gsub( /-/, "" )
+          return if ssn_value_considered_blank?( value )
+          self.send "raw_#{str}=", value.gsub( /-/, "" )
+        end
+
+        define_method "raw_#{str}=" do |value|
+          return if ssn_value_considered_blank?( value )
+          super
         end
       end
+      private :initialize_has_ssn_from_string
 
-      def initialize_has_ssn_from_hash( args )
-      end
     end
 
     module InstanceMethods
 
+      def consider_blank_ssn_values
+        [
+          '000000000',
+          '000-00-0000'
+        ]
+      end
+      private :consider_blank_ssn_values
+
+      def ssn_value_considered_blank?( value )
+        consider_blank_ssn_values.include? value
+      end
+      private :ssn_value_considered_blank?
+
     end
+
   end
+
 end

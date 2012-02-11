@@ -10,8 +10,7 @@ module Ssn
 
     def initialize( value=nil )
       return if value.nil? || value.empty?
-      return if value == '000000000'
-      return if value == '000-00-0000'
+      return if value == '000000000' || value == '000-00-0000'
       @raw = SocialSecurityNumber.parse( value )
     end
 

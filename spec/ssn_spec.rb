@@ -76,4 +76,56 @@ describe Ssn do
 
   end
 
+  context 'when the ssn is set to 000000000' do
+
+    let :user do
+      User.new :name => 'John Smith',
+               :ssn => '000000000'
+    end
+
+    it "should agree that the ssn is nil" do
+      user.ssn.should be_nil
+    end
+
+  end
+
+  context 'when the ssn is set to 000-00-0000' do
+
+    let :user do
+      User.new :name => 'John Smith',
+               :ssn => '000-00-0000'
+    end
+
+    it "should agree that the ssn is nil" do
+      user.ssn.should be_nil
+    end
+
+  end
+
+  context 'when the raw_ssn is set to 000000000' do
+
+    let :user do
+      User.new :name => 'John Smith',
+               :raw_ssn => '000000000'
+    end
+
+    it "should agree that the raw_ssn is nil" do
+      user.raw_ssn.should be_nil
+    end
+
+  end
+
+  context 'when the ssn is set to 000-00-0000' do
+
+    let :user do
+      User.new :name => 'John Smith',
+               :raw_ssn => '000-00-0000'
+    end
+
+    it "should agree that the raw_ssn is nil" do
+      user.raw_ssn.should be_nil
+    end
+
+  end
+
 end
