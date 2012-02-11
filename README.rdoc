@@ -29,7 +29,7 @@ Encapsulates functionality for storing an unformatted SSN but formatting the SSN
 
 Add to environment file:
 
-  gem 'ssn', '~>0.1.0'
+  gem 'ssn', '~>1.0.0'
 
 Run:
 
@@ -39,7 +39,7 @@ Run:
 
 Add to environment file:
 
-  config.gem 'ssn', :version => '~>0.1.0', :source => 'http://gemcutter.org'
+  config.gem 'ssn', :version => '~>1.0.0', :source => 'http://gemcutter.org'
 
 Run:
 
